@@ -1,24 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define SIZE 3
+#define ROW 4
+#define LINE 5
 
 int main(void) {
-	int arr[3][3] = {{5,3,2},
-					{1,7,4},
-					{8,6,9}};
+	int arr[LINE][ROW] = {{4,3,2,1},
+					      {8,6,7,5},
+					      {12,11,10,9},
+					      {16,15,14,13},
+					      {20,18,19,17}};
 
-	int index[3] = {0};
+	int index[4] = {0};
 	int i = 0;
 	int j = 0;
 	int min = 0;
 
-	for (j = 0; j < 9; j++)
+	for (j = 0; j < ROW*LINE; j++)
 	{
 		int min_index = 0;
-		for(i = 0; i < SIZE; i++)
+		for(i = 0; i < ROW; i++)
 		{
-			if (index[i] < SIZE)
+			if (index[i] < LINE)
 			{
 				min_index = i;
 				min = arr[index[i]][i];
@@ -27,11 +30,11 @@ int main(void) {
 			}
 		}
 
-		for(; i < SIZE; i++)
+		for(; i < ROW; i++)
 		{
-			if (index[i] < SIZE)
+			if (index[i] < LINE)
 			{
-				printf("min = %d cur = %d\n", min ,arr[index[i]][i]);
+				//printf("min = %d cur = %d\n", min ,arr[index[i]][i]);
 				if(min > arr[index[i]][i])
 				{
 					min = arr[index[i]][i];
@@ -39,13 +42,11 @@ int main(void) {
 				}
 			}
 		}
-
 		printf("min = %d\n", min);
-		if (index[min_index] < SIZE)
+		if (index[min_index] < LINE)
 		{
 			index[min_index]++;
 		}
 	}
-
 	return EXIT_SUCCESS;
 }
